@@ -15,7 +15,7 @@ const LoginForm = () => {
       if (response.data && response.data["message"] === "Login Successfull") {
         history.push("/user");
       } else {
-        //alert('Wrong email of password');
+        alert("Wrong email of password");
       }
     });
   };
