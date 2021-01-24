@@ -3,19 +3,28 @@ import "./LoginForm.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
 import Maker from "../../../assets/logo.svg";
-import { Link, Route, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import axios from "axios";
-const LoginForm = () => {
-  const [details, setDetails] = useState({ email: "", password: "" });
+import { Button } from "react-bootstrap";
+import Dropdown from "react-dropdown";
+const LoginForm = (props) => {
+  const options = ["Aspirant", "Employer"];
+  const defaultOption = options[0];
+  const [details, setDetails] = useState({
+    email: "",
+    password: "",
+    type: "Aspirant",
+  });
+
   const history = useHistory();
   const handleClick = (event) => {
     event.preventDefault();
-    console.log(details);
     axios.post("http://localhost:5000/startLogin", details).then((response) => {
       if (response.data && response.data["message"] === "Login Successfull") {
+        props.setUser(details.email);
         history.push("/user");
       } else {
-        alert("Wrong email of password");
+        alert("Wrong email or password");
       }
     });
   };
@@ -59,9 +68,23 @@ const LoginForm = () => {
                 value={details.password}
               />
             </div>
-            <button className="btn solid" onClick={handleClick}>
-              Login{" "}
-            </button>
+            <div className="dropdown">
+              <Dropdown
+                className="dropdown"
+                options={options}
+                value={defaultOption}
+                placeholder="Select an option"
+                onChange={(e) => {
+                  setDetails({
+                    ...details,
+                    type: e.value,
+                  });
+                }}
+              />
+            </div>
+            <Button className="button" onClick={handleClick}>
+              Login
+            </Button>
           </form>
         </div>
       </div>
@@ -74,7 +97,7 @@ const LoginForm = () => {
               Sign up
             </button>
           </div>
-          <img src={Maker} className="ImageSize"></img>
+          <img src={Maker} alt="Logo" className="ImageSize"></img>
         </div>
       </div>
     </div>
