@@ -17,8 +17,6 @@ input {
   height: 100%;
   top: 0;
   left: 0;
-  
-
 }
 
 .signin-signup {
@@ -73,9 +71,9 @@ form.sign-in-form {
   position: relative;
 }
 .FontAweSomeIcon {
-    position: relative;
-    margin-top: 15px;
-    margin-left: 15px;
+  position: relative;
+  margin-top: 15px;
+  margin-left: 15px;
 }
 .input-field i {
   text-align: center;
@@ -101,9 +99,14 @@ form.sign-in-form {
 }
 
 .Error {
-    border: 1px solid red;
+  border: 1px solid red;
 }
 
+.dropdown {
+  border-radius: 36px;
+  display: inline-block;
+  background: #cccccc;
+}
 
 .btn {
   width: 150px;
@@ -119,9 +122,11 @@ form.sign-in-form {
   cursor: pointer;
   transition: 0.5s;
 }
-
+.button:hover {
+  background-color: blueviolet;
+}
 .btn:hover {
-  background-color: #4d84e2;
+  background-color: red;
 }
 .panels-container {
   position: absolute;
@@ -133,9 +138,9 @@ form.sign-in-form {
   grid-template-columns: repeat(2, 1fr);
 }
 .ImageSize {
-    position: relative;
-    height: 500px;
-    width: 500px;
+  position: relative;
+  height: 500px;
+  width: 500px;
 }
 .container:before {
   content: "";
@@ -177,7 +182,6 @@ form.sign-in-form {
 }
 
 .panel .content {
-  
   color: #fff;
   transition: transform 0.9s ease-in-out;
   transition-delay: 0.6s;

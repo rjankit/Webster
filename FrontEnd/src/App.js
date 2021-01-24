@@ -1,21 +1,16 @@
-
-import './App.css';
-import LoginForm from './Component/UI/LoginForm/LoginForm';
-import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
-import Axios from "axios";
-import TestComponent from './Component/TestComponent'
-import SignUpForm from './Component/UI/SignUpForm/SignUpForm';
-import User from './Component/UI/User/User';
+import "./App.css";
+import LoginForm from "./Component/UI/LoginForm/LoginForm";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import TestComponent from "./Component/TestComponent";
+import SignUpForm from "./Component/UI/SignUpForm/SignUpForm";
+import User from "./Component/UI/User/User";
+import { useState } from "react";
 function App() {
-  Axios({
-    method: "GET",
-    url: "http://localhost:5000/",
-    headers: {
-      "Content-Type": "application/json"
-    }
-  }).then(res => {
-    console.log(res.data.message);
-  });
+  const [user, setUser] = useState("");
+  if (user !== "") {
+    return <TestComponent />;
+  }
+
   return (
     <BrowserRouter>
       <Switch>
@@ -25,15 +20,14 @@ function App() {
         <Route path="/signUp">
           <SignUpForm />
         </Route>
-        <Route path="/signIn" >
-            <LoginForm />
+        <Route path="/signIn">
+          <LoginForm setUser={setUser} />
         </Route>
-        <Route path="/user" >
-            <User />
+        <Route path="/user">
+          <User />
         </Route>
       </Switch>
     </BrowserRouter>
-    
   );
 }
 
