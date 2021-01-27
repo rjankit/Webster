@@ -58,36 +58,6 @@ app.post("/startLogin", (req, res) => {
     });
 });
 
-/*app.post("/createAccount", (req, res) => {
-  var valid = true;
-  axios
-    .get("https://login-a1d7e-default-rtdb.firebaseio.com/login.json")
-    .then((response) => {
-      for (var i in response.data) {
-        if (req.body.email === response.data[i].email) {
-          valid = false;
-          break;
-        }
-      }
-      if (!valid) {
-        res.send({ message: "Email id is either not valid or already in use" });
-      } else {
-        axios
-          .post(
-            "https://login-a1d7e-default-rtdb.firebaseio.com/login.json",
-            req.body
-          )
-          .then((response) => {
-            if (response["status"] === 200) {
-              res.send({ message: "Success" });
-            } else {
-              res.send({ message: "Some error occured" });
-            }
-          });
-      }
-    });
-});*/
-
 app.get("/getPosts", (req, res) => {
   /*db.collection("posts").onSnapshot((snapshot) => {
     const ankit = snapshot.docs.map((doc) => {
