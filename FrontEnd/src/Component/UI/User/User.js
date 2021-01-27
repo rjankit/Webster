@@ -1,11 +1,13 @@
-import React from 'react'
+import React from "react";
+import MyNavbar from "../MyNavbar/MyNavbar";
 
 const User = () => {
-    return (
-        <div>
-            Welcome to homepage
-        </div>
-    )
-}
+  return (
+    <div>
+      <MyNavbar />
+      Hi Ankit
+    </div>
+  );
+};
 
-export default User
+export default User;

@@ -21,7 +21,7 @@ const LoginForm = (props) => {
     event.preventDefault();
     axios.post("http://localhost:5000/startLogin", details).then((response) => {
       if (response.data && response.data["message"] === "Login Successfull") {
-        props.setUser(details.email);
+        //props.setUser(details.email);
         history.push("/user");
       } else {
         alert("Wrong email or password");
