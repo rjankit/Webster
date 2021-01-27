@@ -9,8 +9,13 @@ import CalendarViewDayIcon from "@material-ui/icons/CalendarViewDay";
 import Post from "./Post/Post";
 import Axios from "axios";
 import axios from "axios";
+import { useSelector } from "react-redux";
+import { selectUser } from "../../../Store/Userslice/Userslice";
+import { useHistory } from "react-router";
 
 const Feed = () => {
+  const user = useSelector(selectUser);
+  const history = useHistory();
   const [posts, setPosts] = useState([]);
   const [input, setInput] = useState("");
   const [update, setUpdate] = useState(true);
@@ -34,7 +39,7 @@ const Feed = () => {
             name: response.data.Object[i].name,
             description: response.data.Object[i].description,
             message: response.data.Object[i].message,
-            photoUrl: "",
+            photoUrl: response.data.Object[i].photoUrl,
           },
         });
       }
@@ -46,10 +51,10 @@ const Feed = () => {
   const sendPost = (event) => {
     event.preventDefault();
     const newPost = {
-      name: "Ankit Raj",
+      name: user ? user.name : "Ankit",
       description: "Hello Ankit",
       message: input,
-      photoUrl: "",
+      photoUrl: user ? user.photoUrl : " ",
       timestamp: new Date().getTime(),
     };
     axios
@@ -63,6 +68,7 @@ const Feed = () => {
       <div className="feed_inputContainer">
         <div className="feed_input">
           <CreateIcon />
+          <label>Message</label>
           <form>
             <input
               onChange={(e) => setInput(e.target.value)}

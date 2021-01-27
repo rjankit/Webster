@@ -22,6 +22,11 @@
   font-size: 20px;
 }
 
+.post_info > h2:hover {
+  color: blue;
+  cursor: pointer;
+}
+
 .post_body {
   overflow-wrap: anywhere;
 }

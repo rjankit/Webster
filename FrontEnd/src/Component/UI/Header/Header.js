@@ -8,7 +8,18 @@ import BusinessCenterIcon from "@material-ui/icons/BusinessCenter";
 import ChatIcon from "@material-ui/icons/Chat";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import Rishu from "./HeaderOptions/Rishu_Less_size.jpg";
+import { useDispatch, useSelector } from "react-redux";
+import { logout, selectUser } from "../../../Store/Userslice/Userslice";
+import { useHistory } from "react-router";
 const Header = () => {
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
+  const history = useHistory();
+  const logOutOfApp = () => {
+    dispatch(logout());
+    history.push("/");
+  };
+
   return (
     <div className="header">
       <div className="header_left">
@@ -29,7 +40,7 @@ const Header = () => {
         <HeaderOptions Icon={BusinessCenterIcon} title="Jobs" />
         <HeaderOptions Icon={ChatIcon} title="Messaging" />
         <HeaderOptions Icon={NotificationsIcon} title="Messages" />
-        <HeaderOptions avatar={Rishu} title="Me" />
+        <HeaderOptions avatar="Nothing" title="Me" onClick={logOutOfApp} />
       </div>
     </div>
   );

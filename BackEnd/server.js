@@ -1,9 +1,7 @@
 // Firebase App (the core Firebase SDK) is always required and
 // must be listed before other Firebase SDKs
-const firebase = require("firebase/app");
 
-const database = require("firebase/auth");
-const auth = require("firebase/firestore");
+const firebase = require("firebase");
 const firebaseConfig = {
   apiKey: "AIzaSyCa2GeQxhOShugv_lth2VNR9ouWwpcfjgY",
   authDomain: "login-a1d7e.firebaseapp.com",
@@ -60,7 +58,7 @@ app.post("/startLogin", (req, res) => {
     });
 });
 
-app.post("/createAccount", (req, res) => {
+/*app.post("/createAccount", (req, res) => {
   var valid = true;
   axios
     .get("https://login-a1d7e-default-rtdb.firebaseio.com/login.json")
@@ -88,8 +86,7 @@ app.post("/createAccount", (req, res) => {
           });
       }
     });
-  ank;
-});
+});*/
 
 app.get("/getPosts", (req, res) => {
   /*db.collection("posts").onSnapshot((snapshot) => {
@@ -122,4 +119,74 @@ app.post("/sendPosts", (req, res) => {
     photoUrl: "",
     timestamp: " ",
   });*/
+});
+
+app.post("/loginUser", (req, res) => {
+  var email = req.body.email;
+  var password = req.body.password;
+  //console.log(email);
+  var message = "Success";
+  var ankit = {};
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      // Signed in
+      var user = userCredential.user;
+      message = "success";
+      axios
+        .get("https://login-a1d7e-default-rtdb.firebaseio.com/users.json")
+        .then((response) => {
+          for (var i in response.data) {
+            if (response.data[i].email === email) {
+              ankit = {
+                email: email,
+                name: response.data[i].name,
+                photoUrl: response.data[i].photoUrl,
+              };
+              res.send({ message: message, user: ankit });
+              break;
+            }
+          }
+        });
+      // ...
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      message = errorMessage;
+      res.send({ message: message });
+    });
+});
+
+app.post("/createAccount", (req, res) => {
+  const email = req.body.email;
+  const password = req.body.password;
+  const ankit = {
+    email: email,
+    name: req.body.name,
+    photoUrl: req.body.photoUrl,
+  };
+  //console.log(email);
+  firebase
+    .auth()
+    .createUserWithEmailAndPassword(email, password)
+    .then((userCredential) => {
+      //console.log(email);
+      //console.log(password);
+      axios
+        .post(
+          "https://login-a1d7e-default-rtdb.firebaseio.com/users.json",
+          ankit
+        )
+        .then((response) => {
+          res.send({ message: "success", user: ankit });
+        });
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+
+      res.send({ message: errorMessage });
+    });
 });

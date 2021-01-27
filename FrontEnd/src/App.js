@@ -10,29 +10,37 @@ import Tester from "./Component/UI/Tester/Tester";
 import { useSelector } from "react-redux";
 import { selectUser } from "./Store/Userslice/Userslice";
 import Login from "./Component/UI/Login/Login";
+import SignUp from "./Component/UI/SIgnUp/SignUp";
 function App() {
-  const [users, setUsers] = useState("g");
+  const [users, setUsers] = useState("");
   const user = useSelector(selectUser);
+  //console.log(user);
   if (users !== "") {
     return <Home />;
   }
   return (
     <div>
-      {!user ? <Login /> : <Home />}
-      {/*<BrowserRouter>
-      <Switch>
-        <Route exact path="/">
-          <SignUpForm />
-        </Route>
-        <Route path="/signUp">
-          <SignUpForm />
-        </Route>
-        <Route path="/signIn" component={withRouter(LoginForm)} />
-        <Route path="/user">
-          <User />
-        </Route>
-      </Switch>
-    </BrowserRouter>*/}
+      <BrowserRouter>
+        {
+          <Switch>
+            <Route exact path="/">
+              <Login />
+            </Route>
+
+            <Route path="/signUp">
+              <SignUp />
+            </Route>
+
+            <Route path="/signIn">
+              <Login />
+            </Route>
+
+            <Route path="/home">
+              <Home />
+            </Route>
+          </Switch>
+        }
+      </BrowserRouter>
     </div>
   );
 }

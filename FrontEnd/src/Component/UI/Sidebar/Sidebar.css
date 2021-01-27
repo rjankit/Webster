@@ -29,6 +29,10 @@
 }
 .sidebar_top > h2 {
   font-size: 18px;
+  color: darkblue;
+}
+.sidebar_top > h2:hover {
+  cursor: pointer;
 }
 
 .sidebar_top > img {

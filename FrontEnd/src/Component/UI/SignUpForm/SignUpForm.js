@@ -9,7 +9,6 @@ import axios from "axios";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
 import { Button, Navbar } from "react-bootstrap";
-import MyNavbar from "../MyNavbar/MyNavbar";
 const SignUpForm = () => {
   const options = ["Aspirant", "Employer"];
   const defaultOption = options[0];

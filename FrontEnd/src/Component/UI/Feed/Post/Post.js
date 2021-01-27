@@ -25,10 +25,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 const Post = ({ name, description, message, photoUrl }) => {
   const classes = useStyles();
+  //console.log("photoUrl");
   return (
     <div className="post">
       <div className="post_header">
-        <Avatar className={classes.large} />
+        <Avatar className={classes.large} src={photoUrl ? photoUrl : ""} />
         <div className="post_info">
           <h2>{name}</h2>
           <p>{description}</p>

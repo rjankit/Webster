@@ -1,9 +1,40 @@
 import React from "react";
 import "./Login.css";
+import { useState } from "react";
 import LinkedInIcon from "./1280px-LinkedIn_Logo.svg.png";
+import { useHistory } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import axios from "axios";
+import { login, logout } from "../../../Store/Userslice/Userslice";
+import { withRouter } from "react-router";
 const Login = () => {
-  const register = () => {};
-  const loginToApp = () => {};
+  const dispatch = useDispatch();
+  const [user, setUser] = useState({
+    email: "",
+    password: "",
+  });
+  const history = useHistory();
+  const register = () => {
+    history.push("/signUp");
+  };
+  const loginToApp = (e) => {
+    e.preventDefault();
+    axios.post("http://localhost:5000/loginUser", user).then((respnse) => {
+      if (respnse.data.message !== "success") {
+        alert(respnse.data.message);
+      } else {
+        dispatch(
+          login({
+            user: respnse.data.user.email,
+            name: respnse.data.user.name,
+            photoUrl: respnse.data.user.photoUrl,
+          })
+        );
+        //console.log("Success");
+        history.push("/home");
+      }
+    });
+  };
   return (
     <div className="login">
       <img
@@ -11,11 +42,18 @@ const Login = () => {
         alt=""
       />
       <form>
-        <input type="text" placeholder="Name" />
-
-        <input type="text" placeholder="Profile Pic Url(Optional)" />
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <input
+          type="email"
+          placeholder="Email"
+          value={user.email}
+          onChange={(e) => setUser({ ...user, email: e.target.value })}
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={user.password}
+          onChange={(e) => setUser({ ...user, password: e.target.value })}
+        />
         <button type="submit" onClick={loginToApp}>
           Sign In
         </button>
@@ -31,4 +69,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withRouter(Login);
