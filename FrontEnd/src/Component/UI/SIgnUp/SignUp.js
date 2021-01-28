@@ -19,7 +19,7 @@ const SignUp = () => {
     e.preventDefault();
     console.log(user);
     axios.post("http://localhost:5000/createAccount", user).then((response) => {
-      console.log(response.data);
+      alert(response.data.message);
     });
   };
   return (

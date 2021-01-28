@@ -18,7 +18,7 @@ const Sidebar = () => {
     <div className="sidebar">
       <div className="sidebar_top">
         <img src={BackgroundImage} alt="" />
-        <Tooltip>{myavatar}</Tooltip>
+        {myavatar}
 
         <h2>{user ? user.name : ""}</h2>
         <h4 className="sidebar_email">{user ? user.user : ""}</h4>
