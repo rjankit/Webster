@@ -17,6 +17,11 @@ const Login = () => {
   const register = () => {
     history.push("/signUp");
   };
+
+  const handleForgotPassword = (e) => {
+    history.push("/forgotPassword");
+  };
+
   const loginToApp = (e) => {
     e.preventDefault();
     axios.post("http://localhost:5000/loginUser", user).then((respnse) => {
@@ -42,6 +47,7 @@ const Login = () => {
         alt=""
       />
       <form>
+        <h1>SignIn</h1>
         <input
           type="email"
           placeholder="Email"
@@ -54,6 +60,7 @@ const Login = () => {
           value={user.password}
           onChange={(e) => setUser({ ...user, password: e.target.value })}
         />
+        <h3 onClick={handleForgotPassword}>Forgot Password?</h3>
         <button type="submit" onClick={loginToApp}>
           Sign In
         </button>

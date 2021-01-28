@@ -11,6 +11,7 @@ import { useSelector } from "react-redux";
 import { selectUser } from "./Store/Userslice/Userslice";
 import Login from "./Component/UI/Login/Login";
 import SignUp from "./Component/UI/SIgnUp/SignUp";
+import ForgotPassword from "./Component/UI/ForgotPassword/ForgotPassword";
 function App() {
   const [users, setUsers] = useState("");
   const user = useSelector(selectUser);
@@ -37,6 +38,10 @@ function App() {
 
             <Route path="/home">
               <Home />
+            </Route>
+
+            <Route path="/forgotPassword">
+              <ForgotPassword />
             </Route>
           </Switch>
         }

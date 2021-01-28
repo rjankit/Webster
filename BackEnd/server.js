@@ -160,3 +160,19 @@ app.post("/createAccount", (req, res) => {
       res.send({ message: errorMessage });
     });
 });
+
+app.post("/resetPassword", (req, res) => {
+  //console.log(req.body.email);
+  const user = req.body.email;
+  firebase
+    .auth()
+    .sendPasswordResetEmail(user)
+    .then(() => {
+      res.send({ message: "Link to reset password has been sent to the mail" });
+    })
+    .catch((error) => {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      res.send({ message: errorMessage });
+    });
+});
