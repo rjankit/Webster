@@ -1,7 +1,5 @@
 import "./App.css";
-import LoginForm, { myLoginForm } from "./Component/UI/LoginForm/LoginForm";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import SignUpForm from "./Component/UI/SignUpForm/SignUpForm";
 import User from "./Component/UI/User/User";
 import { useState } from "react";
 import { withRouter } from "react-router";
