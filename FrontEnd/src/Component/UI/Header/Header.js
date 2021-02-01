@@ -11,7 +11,7 @@ import Rishu from "./HeaderOptions/Rishu_Less_size.jpg";
 import { useDispatch, useSelector } from "react-redux";
 import { logout, selectUser } from "../../../Store/Userslice/Userslice";
 import { useHistory } from "react-router";
-const Header = () => {
+const Header = (props) => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const history = useHistory();
@@ -40,7 +40,11 @@ const Header = () => {
         <HeaderOptions Icon={BusinessCenterIcon} title="Jobs" />
         <HeaderOptions Icon={ChatIcon} title="Messaging" />
         <HeaderOptions Icon={NotificationsIcon} title="Messages" />
-        <HeaderOptions avatar="Nothing" title="Me" onClick={logOutOfApp} />
+        <HeaderOptions
+          avatar="Nothing"
+          title="Me"
+          onClick={props.onProfileClick}
+        />
       </div>
     </div>
   );

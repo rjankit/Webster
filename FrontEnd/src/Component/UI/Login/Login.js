@@ -1,7 +1,6 @@
 import React from "react";
 import "./Login.css";
 import { useState } from "react";
-import LinkedInIcon from "./1280px-LinkedIn_Logo.svg.png";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
