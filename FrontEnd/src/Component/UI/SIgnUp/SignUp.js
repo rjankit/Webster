@@ -9,6 +9,7 @@ const SignUp = () => {
     email: "",
     password: "",
     photoUrl: "",
+    type: "developer",
   });
   const history = useHistory();
   const handleLogin = () => {

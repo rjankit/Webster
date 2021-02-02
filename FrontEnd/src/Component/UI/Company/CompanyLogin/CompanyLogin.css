@@ -1,4 +1,4 @@
-.login {
+.companyLogin {
   display: grid;
   place-items: center;
   margin-left: auto;
@@ -6,92 +6,74 @@
   padding-top: 100px;
   padding-bottom: 100px;
 }
-.login > img {
+
+.companyLogin > img {
   object-fit: contain;
   height: 70px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.login > form {
-  padding-top: 40px;
-  padding-bottom: 60px;
+.companyLogin > form {
   display: flex;
   flex-direction: column;
+  padding-top: 60px;
+  padding-bottom: 60px;
+  padding-left: 60px;
+  padding-right: 60px;
   border: 1px solid gray;
   -moz-box-shadow: 3px 3px 5px 6px #ccc;
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;
   box-shadow: 3px 3px 5px 6px #ccc;
-  padding-left: 60px;
-  padding-right: 60px;
 }
 
-.login > form > input {
+.companyLogin > form > input {
   width: 350px;
   height: 50px;
   font-size: 20px;
   padding-left: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
+  margin-top: 10px;
   border-radius: 5px;
-  margin-top: 0px;
-}
-.login > form > h1 {
-  font-size: 28px;
-  line-height: 1.25;
-  font-weight: 600;
-  color: rgba(0, 0, 0, 0.9);
-  padding: 0 0 4px 0;
-  margin-right: 282px;
 }
 
-.login > form > h3 {
-  padding-right: 40px;
-  margin-right: 167px;
-  margin-top: 01px;
-  padding-top: 1px;
-  margin-bottom: 20px;
-  color: #0177b7;
-}
-.login > form > h3:hover {
-  cursor: pointer;
-  font-weight: bold;
-}
-
-.login > form > button {
+.companyLogin > form > button {
   width: 365px;
   height: 50px;
   font-size: large;
   color: #fff;
   background-color: #0074b1;
   border-radius: 40px;
-  margin-bottom: 20px;
+  margin-top: 30px;
 }
 
-.login > form > button:hover {
+.companyLogin > form > button:hover {
   cursor: pointer;
   font-weight: bold;
 }
+.companyLogin > form > h3 {
+  padding-right: 40px;
+  margin-right: 167px;
+  margin-top: 01px;
+  padding-top: 5px;
+  margin-bottom: 0px;
+  color: #0177b7;
+}
 
-.login_register {
+.companyLogin > form > h3:hover {
+  cursor: pointer;
+}
+
+.company_signup {
   color: #0177b7;
   cursor: pointer;
 }
 
-.login_register:hover {
-  font-weight: bold;
+.company_signup:hover {
+  font-weight: 600;
 }
 
-.login > p {
-  margin-top: 20px;
-}
-
-.login > h3 {
-  margin-left: 20px;
-  margin-top: -10px;
-  margin-bottom: 0%;
-}
-
-.company {
+.user_login {
   padding-left: 140px;
   padding-right: 140px;
 
@@ -101,12 +83,10 @@
   box-shadow: 3px 3px 5px 6px #ccc;
 }
 
-.company_login {
-}
-.company_login > h2 {
+.user_login > h2 {
   color: #0177b7;
 }
-.company_login > h2:hover {
+.user_login > h2:hover {
   cursor: pointer;
   background-color: whitesmoke;
   border: 1px solid lightgray;

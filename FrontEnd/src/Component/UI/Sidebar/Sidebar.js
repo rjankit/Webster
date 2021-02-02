@@ -1,4 +1,4 @@
-import { Avatar, Tooltip } from "@material-ui/core";
+import { Avatar } from "@material-ui/core";
 import React from "react";
 import "./Sidebar.css";
 import BackgroundImage from "../Header/HeaderOptions/bc.jpg";

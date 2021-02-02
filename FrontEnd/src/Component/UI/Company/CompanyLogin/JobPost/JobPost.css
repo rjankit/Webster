@@ -1,0 +1,35 @@
+.jobPost {
+  background-color: white;
+  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  padding-bottom: 10px;
+  width: 500px;
+}
+.jobPost:hover {
+  cursor: pointer;
+}
+
+.jobPost_header {
+  display: flex;
+  border-radius: 15px;
+  margin-left: 30px;
+}
+
+.jobPost > h3 {
+  margin-top: -5px;
+  margin-left: 300px;
+  color: blueviolet;
+}
+.jobPost_info {
+  margin-top: -15px;
+  padding-left: 5px;
+}
+.jobPost_info > h2 {
+  font-weight: 600;
+}
+.jobPost_info > h3 {
+  margin-top: -15px;
+  font-weight: 400;
+}
