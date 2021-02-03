@@ -1,0 +1,12 @@
+.developerJobPage_home {
+  background-color: #f3f2ef;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.developerJobPage_home_body {
+  display: flex;
+}
+.developerJobPage_feed {
+  flex: 0.6;
+}

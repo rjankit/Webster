@@ -14,7 +14,7 @@ const firebaseConfig = {
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const admin = require("firebase-admin");
-
+const database = firebase.database();
 const serviceAccount = require("./service_account.json");
 
 admin.initializeApp({
@@ -38,7 +38,7 @@ app.listen(port, () => console.log("Backend server live on " + port));
 const check = ["Hi", "Hello", "Thanks"];
 
 app.post("/startLogin", (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   axios
     .get("https://login-a1d7e-default-rtdb.firebaseio.com/login.json")
     .then((response) => {
@@ -57,7 +57,8 @@ app.post("/startLogin", (req, res) => {
       if (ab) {
         res.send({ message: "Login Unsuccessfull" });
       }
-    });
+    })
+    .catch(() => {});
 });
 
 app.get("/getPosts", (req, res) => {
@@ -83,7 +84,8 @@ app.post("/sendPosts", (req, res) => {
     )
     .then((response) => {
       //console.log(response);
-    });
+    })
+    .catch(() => {});
   /*db.collection("posts").add({
     name: req.body.name,
     description: "Hello Ankit",
@@ -171,7 +173,7 @@ app.post("/createAccount", (req, res) => {
       type: req.body.type,
     };
   }
-  console.log(ankit);
+  //console.log(ankit);
   //console.log(email);
   firebase
     .auth()
@@ -184,7 +186,8 @@ app.post("/createAccount", (req, res) => {
         )
         .then((response) => {
           res.send({ message: "success", user: ankit });
-        });
+        })
+        .catch(() => {});
     })
     .catch((error) => {
       var errorCode = error.code;
@@ -209,7 +212,7 @@ app.post("/resetPassword", (req, res) => {
       res.send({ message: errorMessage });
     });
 });
-const temp = {
+/*const temp = {
   company: "Cisco",
   title: " Science",
   companyEmail: "cisco@gmail.com",
@@ -223,7 +226,7 @@ const temp = {
   payrange: "23450-204859",
   status: "Open",
 };
-axios.post("https://login-a1d7e-default-rtdb.firebaseio.com/jobs.json", temp);
+axios.post("https://login-a1d7e-default-rtdb.firebaseio.com/jobs.json", temp);*/
 
 app.post("/getJobsForCompany", (req, res) => {
   const email = req.body.user;
@@ -239,7 +242,7 @@ app.post("/getJobsForCompany", (req, res) => {
             company: a.company,
             title: a.title,
             companyEmail: a.companyEmail,
-            location: "Motihari",
+            location: a.location,
             postingTime: a.postingTime,
             description: a.description,
             role: a.role,
@@ -252,7 +255,8 @@ app.post("/getJobsForCompany", (req, res) => {
         }
       }
       res.send({ message: "success", Object: jobs });
-    });
+    })
+    .catch(() => {});
 });
 
 app.post("/getJobDetails", (req, res) => {
@@ -280,5 +284,48 @@ app.post("/getJobDetails", (req, res) => {
         status: a.status,
       };
       res.send({ message: "success", Object: ankit });
+    });
+});
+
+app.post("/closeOpening", (req, res) => {
+  //console.log(req.body.id);
+  database.ref("jobs/" + req.body.id + "/status").set("closed");
+  res.send({ message: "success" });
+});
+
+app.post("/postNewJob", (req, res) => {
+  database.ref("jobs").push().set(req.body);
+  res.send({ message: "success" });
+});
+
+app.get("/getDeveloperJobs", (req, res) => {
+  var jobs = [];
+  database.ref("jobs").on("value", (snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+      const a = childSnapshot.val();
+      const ankit = {
+        id: childSnapshot.key,
+        photoUrl: a.photoUrl,
+        title: a.title,
+        company: a.company,
+        location: a.location,
+        status: a.status,
+      };
+      jobs.push(ankit);
+    });
+  });
+  res.send({ message: "success", Object: jobs });
+});
+
+app.post("/applyJob", (req, res) => {
+  axios
+    .post(
+      "https://login-a1d7e-default-rtdb.firebaseio.com/applicants/" +
+        req.body.id +
+        ".json",
+      req.body
+    )
+    .then((response) => {
+      res.send({ message: "success" });
     });
 });

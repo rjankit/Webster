@@ -15,6 +15,9 @@ import CompanyLogin from "./Component/UI/Company/CompanyLogin/CompanyLogin";
 import CompanyHome from "./Component/UI/Company/CompanyLogin/CompanyHome/CompanyHome";
 import Test from "./Component/Test/Test";
 import Job from "./Component/UI/Job/Job";
+import NewJobOpening from "./Component/UI/Company/CompanyLogin/NewJobOpening/NewJobOpening";
+import DeveloperJobPage from "./Component/UI/DeveloperJobPage/DeveloperJobPage";
+import ApplyPage from "./Component/UI/ApplyPage/ApplyPage";
 function App() {
   const [users, setUsers] = useState("");
   const user = useSelector(selectUser);
@@ -65,6 +68,18 @@ function App() {
 
             <Route path="/job/:id">
               <Job />
+            </Route>
+
+            <Route path="/newJobOpening">
+              <NewJobOpening />
+            </Route>
+
+            <Route path="/developerJobs">
+              <DeveloperJobPage />
+            </Route>
+
+            <Route path="/applyNow/:id">
+              <ApplyPage />
             </Route>
           </Switch>
         }

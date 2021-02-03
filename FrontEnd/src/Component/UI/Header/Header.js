@@ -21,6 +21,11 @@ const Header = (props) => {
     history.push("/");
   };
 
+  const handleJobClick = (e) => {
+    if (user.type === "developer") {
+      history.push("/developerJobs");
+    }
+  };
   return (
     <div className="header">
       <div className="header_left">
@@ -38,9 +43,13 @@ const Header = (props) => {
       <div className="header_right">
         <HeaderOptions Icon={HomeIcon} title="Home" />
         <HeaderOptions Icon={SupervisorAccountIcon} title="MyNetwork" />
-        <HeaderOptions Icon={BusinessCenterIcon} title="Jobs" />
+        <HeaderOptions
+          Icon={BusinessCenterIcon}
+          title="Jobs"
+          onClick={handleJobClick}
+        />
         <HeaderOptions Icon={ChatIcon} title="Messaging" />
-        <HeaderOptions Icon={NotificationsIcon} title="Messages" />
+        <HeaderOptions Icon={NotificationsIcon} title="Notifications" />
         <HeaderOptions
           avatar="Nothing"
           title="Me"

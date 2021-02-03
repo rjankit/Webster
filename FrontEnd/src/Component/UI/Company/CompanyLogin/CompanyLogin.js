@@ -24,7 +24,7 @@ const CompanyLogin = () => {
             user: respnse.data.user.email,
             name: respnse.data.user.name,
             photoUrl: respnse.data.user.photoUrl,
-            type: "developer",
+            type: "company",
             contact: respnse.data.user.contact,
             location: respnse.data.user.location,
           })

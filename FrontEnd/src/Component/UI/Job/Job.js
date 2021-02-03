@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router";
+import { useHistory, useParams } from "react-router";
 import { selectUser } from "../../../Store/Userslice/Userslice";
 import Header from "../Header/Header";
 import "./Job.css";
@@ -9,7 +9,7 @@ const Job = () => {
   const user = useSelector(selectUser);
   const params = useParams();
   const id = params.id;
-  const ankit = ["Data Scientist", "Tester", "Engineer"];
+  const history = useHistory();
   const [details, setDetails] = useState({
     title: "",
     company: "",
@@ -23,6 +23,45 @@ const Job = () => {
     payrange: "",
     status: "",
   });
+  const handleCloseOpeningClick = (e) => {
+    if (details.status === "closed") {
+      alert("This opening has already been closed");
+      return;
+    }
+    axios
+      .post("http://localhost:5000/closeOpening", { id: id })
+      .then((response) => {
+        alert(response.data.message);
+        setDetails({ ...details, status: "closed" });
+      });
+  };
+
+  const handleApplyClick = (e) => {
+    history.push("/applyNow/" + id);
+  };
+
+  const button = user ? (
+    user.location ? (
+      <button onClick={handleCloseOpeningClick}>Close Opening</button>
+    ) : null
+  ) : null;
+
+  const applyNowButton = user ? (
+    user.type === "developer" ? (
+      <button
+        disabled={details && details.status === "closed"}
+        onClick={handleApplyClick}
+      >
+        Apply Now
+      </button>
+    ) : null
+  ) : null;
+
+  const viewApplications = user ? (
+    user.location ? (
+      <button>View Applications</button>
+    ) : null
+  ) : null;
   useEffect(() => {
     axios
       .post("http://localhost:5000/getJobDetails", { id: id })
@@ -55,9 +94,11 @@ const Job = () => {
             <h3>{details.title}</h3>
             <h4>{details.company}</h4>
             <h4>{details.location}</h4>
-            <h5> {details.postingTime} </h5>
+            <h5> Posted : {details.postingTime} </h5>
           </div>
-          <button>Apply Now</button>
+          {button}
+          {applyNowButton}
+          {viewApplications}
         </div>
 
         <div className="job_body">
@@ -72,12 +113,12 @@ const Job = () => {
         </div>
         <div className="job_bottom">
           <h3>Job Requirements</h3>
-          {details.requirements.map((req) => {
-            return <li>{req}</li>;
+          {details.requirements.map((req, id) => {
+            return <li key={id}>{req}</li>;
           })}
 
           <h3>Preferred Start Date - {details.start_date}</h3>
-          <p>Pay range - {details.payrange}</p>
+          <h3>Pay range - {details.payrange}</h3>
         </div>
       </div>
     </div>

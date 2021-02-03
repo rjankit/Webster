@@ -43,6 +43,10 @@
   font-weight: 600;
   margin-bottom: 40px;
 }
+.job_header > button:disabled {
+  background-color: red;
+  cursor: auto;
+}
 
 .job_header > button:hover {
   cursor: pointer;
