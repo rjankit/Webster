@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 import { selectUser } from "../../../Store/Userslice/Userslice";
 const Sidebar = () => {
   const user = useSelector(selectUser);
-  const recentItem = (topic) => {};
   const myavatar =
     user && user.photoUrl !== "" ? (
       <Avatar className="headerOptions_icon" src={user.photoUrl} />

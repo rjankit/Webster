@@ -1,8 +1,6 @@
 import { Avatar, makeStyles } from "@material-ui/core";
 import React from "react";
-import { useSelector } from "react-redux";
 import { useHistory } from "react-router";
-import { selectUser } from "../../../../Store/Userslice/Userslice";
 import "./DeveloperJobs.css";
 const useStyles = makeStyles((theme) => ({
   root: {

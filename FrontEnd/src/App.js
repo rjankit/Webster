@@ -1,12 +1,6 @@
 import "./App.css";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
-import User from "./Component/UI/User/User";
-import { useState } from "react";
-import { withRouter } from "react-router";
 import Home from "./Component/UI/Home/Home";
-import Tester from "./Component/UI/Tester/Tester";
-import { useSelector } from "react-redux";
-import { selectUser } from "./Store/Userslice/Userslice";
 import Login from "./Component/UI/Login/Login";
 import SignUp from "./Component/UI/SIgnUp/SignUp";
 import ForgotPassword from "./Component/UI/ForgotPassword/ForgotPassword";
@@ -20,12 +14,6 @@ import DeveloperJobPage from "./Component/UI/DeveloperJobPage/DeveloperJobPage";
 import ApplyPage from "./Component/UI/ApplyPage/ApplyPage";
 import ViewApplicants from "./Component/UI/Company/ViewApplicants/ViewApplicants";
 function App() {
-  const [users, setUsers] = useState("");
-  const user = useSelector(selectUser);
-  //console.log(user);
-  if (users !== "") {
-    return <Home />;
-  }
   return (
     <div>
       <BrowserRouter>
