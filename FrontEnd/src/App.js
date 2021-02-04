@@ -18,6 +18,7 @@ import Job from "./Component/UI/Job/Job";
 import NewJobOpening from "./Component/UI/Company/CompanyLogin/NewJobOpening/NewJobOpening";
 import DeveloperJobPage from "./Component/UI/DeveloperJobPage/DeveloperJobPage";
 import ApplyPage from "./Component/UI/ApplyPage/ApplyPage";
+import ViewApplicants from "./Component/UI/Company/ViewApplicants/ViewApplicants";
 function App() {
   const [users, setUsers] = useState("");
   const user = useSelector(selectUser);
@@ -80,6 +81,10 @@ function App() {
 
             <Route path="/applyNow/:id">
               <ApplyPage />
+            </Route>
+
+            <Route path="/viewApplicants/:id">
+              <ViewApplicants />
             </Route>
           </Switch>
         }

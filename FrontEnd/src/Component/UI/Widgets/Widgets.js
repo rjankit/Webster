@@ -26,10 +26,10 @@ const Widgets = () => {
         </h2>
       </div>
 
-      {newsArticle("Ankit Raj is back", "Top news")}
-      {newsArticle("Ankit Raj is back", "Top news")}
-      {newsArticle("Ankit Raj is back", "Top news")}
-      {newsArticle("Ankit Raj is back", "Top news")}
+      {newsArticle("Ankit Raj is pro", "Top news")}
+      {newsArticle("Ashutosh is pro", "Top news")}
+      {newsArticle("Neeraj is pro", "Top news")}
+      {newsArticle("Ojaswi is pro", "Top news")}
     </div>
   );
 };

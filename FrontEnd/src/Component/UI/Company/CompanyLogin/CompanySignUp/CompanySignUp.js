@@ -26,7 +26,7 @@ const CompanySignUp = () => {
   return (
     <div className="companySignup">
       <img
-        src="https://news.hitb.org/sites/default/files/styles/large/public/field/image/500px-LinkedIn_Logo.svg__1.png?itok=q_lR0Vks"
+        src="https://cdn.slidesharecdn.com/ss_thumbnails/letterjj-180710190655-thumbnail-4.jpg?cb=1531249722"
         alt=""
       />
       <form>

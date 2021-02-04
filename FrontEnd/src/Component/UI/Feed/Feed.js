@@ -19,7 +19,7 @@ const Feed = () => {
   const [posts, setPosts] = useState([]);
   const [input, setInput] = useState("");
   const [update, setUpdate] = useState(true);
-
+  const [refresh, setRefresh] = useState(true);
   function compare(a, b) {
     if (a.timestamp < b.timestamp) {
       return -1;
@@ -60,7 +60,7 @@ const Feed = () => {
     axios
       .post("http://localhost:5000/sendPosts", newPost)
       .then((response) => {});
-    setUpdate(!update);
+    setRefresh((refresh) => !refresh);
     setInput("");
   };
   return (

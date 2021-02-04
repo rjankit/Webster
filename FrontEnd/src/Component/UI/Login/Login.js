@@ -6,6 +6,7 @@ import { useDispatch } from "react-redux";
 import axios from "axios";
 import { login, logout } from "../../../Store/Userslice/Userslice";
 import { withRouter } from "react-router";
+import HomeIcon from "../../../assets/home.png";
 const Login = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState({
@@ -53,9 +54,13 @@ const Login = () => {
   return (
     <div className="login">
       <img
-        src="https://news.hitb.org/sites/default/files/styles/large/public/field/image/500px-LinkedIn_Logo.svg__1.png?itok=q_lR0Vks"
+        src="https://cdn.slidesharecdn.com/ss_thumbnails/letterjj-180710190655-thumbnail-4.jpg?cb=1531249722"
         alt=""
       />
+      {/*<img
+        src="https://news.hitb.org/sites/default/files/styles/large/public/field/image/500px-LinkedIn_Logo.svg__1.png?itok=q_lR0Vks"
+        alt=""
+      />*/}
       <form>
         <h1>SignIn</h1>
         <input

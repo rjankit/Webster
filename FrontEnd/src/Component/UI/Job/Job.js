@@ -40,6 +40,10 @@ const Job = () => {
     history.push("/applyNow/" + id);
   };
 
+  const handleViewSelectedClick = (e) => {
+    history.push("/viewApplicants/" + id);
+  };
+
   const button = user ? (
     user.location ? (
       <button onClick={handleCloseOpeningClick}>Close Opening</button>
@@ -58,8 +62,8 @@ const Job = () => {
   ) : null;
 
   const viewApplications = user ? (
-    user.location ? (
-      <button>View Applications</button>
+    user.type === "company" ? (
+      <button onClick={handleViewSelectedClick}>View Applications</button>
     ) : null
   ) : null;
   useEffect(() => {

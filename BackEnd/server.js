@@ -329,3 +329,19 @@ app.post("/applyJob", (req, res) => {
       res.send({ message: "success" });
     });
 });
+
+app.post("/getApplicants", (req, res) => {
+  var applicants = [];
+  database.ref("applicants/" + req.body.id).on("value", (snapshot) => {
+    snapshot.forEach((child) => {
+      const a = child.val();
+      applicants.push({
+        name: a.name,
+        email: a.email,
+        resumeId: a.resumeId,
+        githubId: a.githubId,
+      });
+    });
+  });
+  res.send({ message: "success", Object: applicants });
+});
