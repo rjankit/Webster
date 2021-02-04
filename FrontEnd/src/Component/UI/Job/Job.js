@@ -93,7 +93,10 @@ const Job = () => {
       <Header />
       <div className="job">
         <div className="job_header">
-          <img src="https://media-exp1.licdn.com/dms/image/C560BAQE9mv648k-SEQ/company-logo_200_200/0/1596573038658?e=1620259200&v=beta&t=ydXXdyuXiJ8KXkgrWwc1vsYz1J6_Ej_3Y49bsmJmgIg" />
+          <img
+            alt=""
+            src="https://media-exp1.licdn.com/dms/image/C560BAQE9mv648k-SEQ/company-logo_200_200/0/1596573038658?e=1620259200&v=beta&t=ydXXdyuXiJ8KXkgrWwc1vsYz1J6_Ej_3Y49bsmJmgIg"
+          />
           <div className="job_header_info">
             <h3>{details.title}</h3>
             <h4>{details.company}</h4>

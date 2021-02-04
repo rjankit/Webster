@@ -1,6 +1,3 @@
-// Firebase App (the core Firebase SDK) is always required and
-// must be listed before other Firebase SDKs
-
 const firebase = require("firebase");
 const firebaseConfig = {
   apiKey: "AIzaSyCa2GeQxhOShugv_lth2VNR9ouWwpcfjgY",
@@ -38,7 +35,6 @@ app.listen(port, () => console.log("Backend server live on " + port));
 const check = ["Hi", "Hello", "Thanks"];
 
 app.post("/startLogin", (req, res) => {
-  //console.log(req.body);
   axios
     .get("https://login-a1d7e-default-rtdb.firebaseio.com/login.json")
     .then((response) => {
@@ -62,13 +58,6 @@ app.post("/startLogin", (req, res) => {
 });
 
 app.get("/getPosts", (req, res) => {
-  /*db.collection("posts").onSnapshot((snapshot) => {
-    const ankit = snapshot.docs.map((doc) => {
-      return Object.assign(doc.data(), { id: doc.id });
-    });
-    console.log(ankit);
-    res.send({ message: "Hello Ankit", Object: ankit });
-  });*/
   axios
     .get("https://login-a1d7e-default-rtdb.firebaseio.com/posts.json")
     .then((response) => {
@@ -82,17 +71,8 @@ app.post("/sendPosts", (req, res) => {
       "https://login-a1d7e-default-rtdb.firebaseio.com/posts.json",
       req.body
     )
-    .then((response) => {
-      //console.log(response);
-    })
+    .then((response) => {})
     .catch(() => {});
-  /*db.collection("posts").add({
-    name: req.body.name,
-    description: "Hello Ankit",
-    message: req.body.message,
-    photoUrl: "",
-    timestamp: " ",
-  });*/
 });
 
 app.post("/loginUser", (req, res) => {
@@ -173,8 +153,6 @@ app.post("/createAccount", (req, res) => {
       type: req.body.type,
     };
   }
-  //console.log(ankit);
-  //console.log(email);
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
@@ -212,21 +190,6 @@ app.post("/resetPassword", (req, res) => {
       res.send({ message: errorMessage });
     });
 });
-/*const temp = {
-  company: "Cisco",
-  title: " Science",
-  companyEmail: "cisco@gmail.com",
-  location: "Allahabad",
-  postingTime: "22/07/2001",
-  description:
-    "Part time home based job for students , students can earn money while studying and also you can work at your free time. Opportunity to Refer And Earn. Earn Rewards By refering.Responsibilities And Good Worker. earn While You Learn ",
-  role: "Engneer",
-  requirements: "Nothing require, thanks a lot",
-  start_date: "2022",
-  payrange: "23450-204859",
-  status: "Open",
-};
-axios.post("https://login-a1d7e-default-rtdb.firebaseio.com/jobs.json", temp);*/
 
 app.post("/getJobsForCompany", (req, res) => {
   const email = req.body.user;
@@ -301,6 +264,7 @@ app.post("/postNewJob", (req, res) => {
 app.get("/getDeveloperJobs", (req, res) => {
   var jobs = [];
   database.ref("jobs").on("value", (snapshot) => {
+    console.log(snapshot.val());
     snapshot.forEach((childSnapshot) => {
       const a = childSnapshot.val();
       const ankit = {
@@ -313,8 +277,9 @@ app.get("/getDeveloperJobs", (req, res) => {
       };
       jobs.push(ankit);
     });
+    console.log(jobs);
+    res.send({ message: "success", Object: jobs });
   });
-  res.send({ message: "success", Object: jobs });
 });
 
 app.post("/applyJob", (req, res) => {

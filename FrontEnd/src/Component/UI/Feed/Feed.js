@@ -15,10 +15,8 @@ import { useHistory } from "react-router";
 
 const Feed = () => {
   const user = useSelector(selectUser);
-  const history = useHistory();
   const [posts, setPosts] = useState([]);
   const [input, setInput] = useState("");
-  const [update, setUpdate] = useState(true);
   const [refresh, setRefresh] = useState(true);
   function compare(a, b) {
     if (a.timestamp < b.timestamp) {

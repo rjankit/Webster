@@ -38,10 +38,14 @@ const CompanyHome = () => {
       <div className="companyHome_header_parent">
         <div className="companyHome_header">
           <div className="companyHome_header_image">
-            <img src="https://media-exp1.licdn.com/dms/image/C561BAQFOpXunAwewCA/company-background_10000/0/1602702874262?e=1612342800&v=beta&t=tkT2V2a2peOn1CXa3MX2MJgjfBS_h9iMMxLIa_XR6yM" />
+            <img
+              alt=""
+              src="https://media-exp1.licdn.com/dms/image/C561BAQFOpXunAwewCA/company-background_10000/0/1602702874262?e=1612342800&v=beta&t=tkT2V2a2peOn1CXa3MX2MJgjfBS_h9iMMxLIa_XR6yM"
+            />
           </div>
           <div className="companyHome_header_middle">
             <img
+              alt=""
               src={
                 user
                   ? user.photoUrl

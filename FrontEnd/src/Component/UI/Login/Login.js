@@ -4,9 +4,8 @@ import { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
-import { login, logout } from "../../../Store/Userslice/Userslice";
+import { login } from "../../../Store/Userslice/Userslice";
 import { withRouter } from "react-router";
-import HomeIcon from "../../../assets/home.png";
 const Login = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState({

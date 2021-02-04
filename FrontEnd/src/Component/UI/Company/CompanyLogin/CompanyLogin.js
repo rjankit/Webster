@@ -4,7 +4,7 @@ import "./CompanyLogin.css";
 import axios from "axios";
 
 import { useDispatch } from "react-redux";
-import { login, logout } from "../../../../Store/Userslice/Userslice";
+import { login } from "../../../../Store/Userslice/Userslice";
 const CompanyLogin = () => {
   const dispatch = useDispatch();
   const history = useHistory();
