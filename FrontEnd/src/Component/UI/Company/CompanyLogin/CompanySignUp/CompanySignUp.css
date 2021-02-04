@@ -1,4 +1,4 @@
-.signup {
+.companySignup {
   display: grid;
   place-items: center;
   margin-left: auto;
@@ -7,14 +7,14 @@
   padding-bottom: 100px;
 }
 
-.signup > img {
+.companySignup > img {
   object-fit: contain;
   height: 70px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.signup > form {
+.companySignup > form {
   display: flex;
   flex-direction: column;
   padding-top: 60px;
@@ -27,7 +27,7 @@
   box-shadow: 3px 3px 5px 6px #ccc;
 }
 
-.signup > form > input {
+.companySignup > form > input {
   width: 350px;
   height: 50px;
   font-size: 20px;
@@ -37,7 +37,7 @@
   border-radius: 5px;
 }
 
-.signup > form > button {
+.companySignup > form > button {
   width: 365px;
   height: 50px;
   font-size: large;
@@ -47,20 +47,16 @@
   margin-top: 30px;
 }
 
-.signup > form > button:hover {
+.companySignup > form > button:hover {
   cursor: pointer;
   font-weight: bold;
 }
 
-.signup_register {
+.company_login {
   color: #0177b7;
   cursor: pointer;
 }
 
-.signup_register:hover {
-  font-weight: bold;
-}
-
-.signup > p {
-  margin-top: 20px;
+.company_login:hover {
+  font-weight: 600;
 }

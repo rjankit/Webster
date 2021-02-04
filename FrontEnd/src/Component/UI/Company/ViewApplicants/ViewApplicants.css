@@ -1,0 +1,13 @@
+.viewApplicants {
+  background-color: #f3f2ef;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.viewApplicants_body {
+  display: flex;
+}
+
+.viewApplicants_feed {
+  flex: 0.6;
+}

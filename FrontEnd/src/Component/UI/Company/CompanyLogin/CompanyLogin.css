@@ -1,4 +1,4 @@
-.signup {
+.companyLogin {
   display: grid;
   place-items: center;
   margin-left: auto;
@@ -7,14 +7,14 @@
   padding-bottom: 100px;
 }
 
-.signup > img {
+.companyLogin > img {
   object-fit: contain;
   height: 70px;
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
-.signup > form {
+.companyLogin > form {
   display: flex;
   flex-direction: column;
   padding-top: 60px;
@@ -27,7 +27,7 @@
   box-shadow: 3px 3px 5px 6px #ccc;
 }
 
-.signup > form > input {
+.companyLogin > form > input {
   width: 350px;
   height: 50px;
   font-size: 20px;
@@ -37,7 +37,7 @@
   border-radius: 5px;
 }
 
-.signup > form > button {
+.companyLogin > form > button {
   width: 365px;
   height: 50px;
   font-size: large;
@@ -47,20 +47,48 @@
   margin-top: 30px;
 }
 
-.signup > form > button:hover {
+.companyLogin > form > button:hover {
   cursor: pointer;
   font-weight: bold;
 }
+.companyLogin > form > h3 {
+  padding-right: 40px;
+  margin-right: 167px;
+  margin-top: 01px;
+  padding-top: 5px;
+  margin-bottom: 0px;
+  color: #0177b7;
+}
 
-.signup_register {
+.companyLogin > form > h3:hover {
+  cursor: pointer;
+}
+
+.company_signup {
   color: #0177b7;
   cursor: pointer;
 }
 
-.signup_register:hover {
-  font-weight: bold;
+.company_signup:hover {
+  font-weight: 600;
 }
 
-.signup > p {
-  margin-top: 20px;
+.user_login {
+  padding-left: 140px;
+  padding-right: 140px;
+
+  border: 1px solid gray;
+  -moz-box-shadow: 3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow: 3px 3px 5px 6px #ccc;
+}
+
+.user_login > h2 {
+  color: #0177b7;
+}
+.user_login > h2:hover {
+  cursor: pointer;
+  background-color: whitesmoke;
+  border: 1px solid lightgray;
+  border-radius: 5px;
 }

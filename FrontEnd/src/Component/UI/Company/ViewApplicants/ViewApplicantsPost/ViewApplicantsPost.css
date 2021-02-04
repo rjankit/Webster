@@ -1,0 +1,24 @@
+.viewApplicantPost {
+  flex: 0.6;
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  margin: 20px;
+}
+
+.viewApplicantPost_header {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.viewApplicants_info {
+  margin-left: 10px;
+}
+.viewApplicants_info > p {
+  font-size: 15px;
+  color: gray;
+}
+.viewApplicants_info > h2 {
+  font-size: 20px;
+}

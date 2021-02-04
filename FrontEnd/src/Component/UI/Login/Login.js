@@ -1,25 +1,35 @@
 import React from "react";
 import "./Login.css";
 import { useState } from "react";
-import LinkedInIcon from "./1280px-LinkedIn_Logo.svg.png";
 import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { login, logout } from "../../../Store/Userslice/Userslice";
 import { withRouter } from "react-router";
+import HomeIcon from "../../../assets/home.png";
 const Login = () => {
   const dispatch = useDispatch();
   const [user, setUser] = useState({
     email: "",
     password: "",
+    type: "developer",
   });
   const history = useHistory();
+  //history.push("/test/12345");
   const register = () => {
     history.push("/signUp");
   };
 
   const handleForgotPassword = (e) => {
     history.push("/forgotPassword");
+  };
+
+  const handleCompanySignUp = (e) => {
+    history.push("/companySignup");
+  };
+
+  const handleCompanyLogin = (e) => {
+    history.push("/companyLogin");
   };
 
   const loginToApp = (e) => {
@@ -33,6 +43,7 @@ const Login = () => {
             user: respnse.data.user.email,
             name: respnse.data.user.name,
             photoUrl: respnse.data.user.photoUrl,
+            type: "developer",
           })
         );
         //console.log("Success");
@@ -43,9 +54,13 @@ const Login = () => {
   return (
     <div className="login">
       <img
-        src="https://news.hitb.org/sites/default/files/styles/large/public/field/image/500px-LinkedIn_Logo.svg__1.png?itok=q_lR0Vks"
+        src="https://cdn.slidesharecdn.com/ss_thumbnails/letterjj-180710190655-thumbnail-4.jpg?cb=1531249722"
         alt=""
       />
+      {/*<img
+        src="https://news.hitb.org/sites/default/files/styles/large/public/field/image/500px-LinkedIn_Logo.svg__1.png?itok=q_lR0Vks"
+        alt=""
+      />*/}
       <form>
         <h1>SignIn</h1>
         <input
@@ -72,6 +87,15 @@ const Login = () => {
           Register Now
         </span>
       </p>
+      <div className="company">
+        <div className="company_login">
+          <h2 onClick={handleCompanyLogin}>Company Login</h2>
+        </div>
+
+        <div className="company_login">
+          <h2 onClick={handleCompanySignUp}>Company SignUp</h2>
+        </div>
+      </div>
     </div>
   );
 };

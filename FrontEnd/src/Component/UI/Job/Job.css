@@ -1,0 +1,96 @@
+.job {
+  background-color: whitesmoke;
+  padding: 15px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 15px;
+  padding-bottom: 10px;
+}
+.job_header {
+  background-color: white;
+  margin-left: 400px;
+  width: 700px;
+  margin-top: 20px;
+  padding-left: 50px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.job_header_info > h4 {
+  font-weight: 500;
+}
+
+.job_header_info > h5 {
+  font-size: 17px;
+  font-weight: 400;
+  font-style: italic;
+  margin-top: -4px;
+}
+.job_header > img {
+  margin-top: 20px;
+  height: 80px;
+  width: 80px;
+}
+
+.job_header > button {
+  width: 120px;
+  height: 40px;
+  border-radius: 20px;
+  background-color: #3c3bf9;
+  color: white;
+  font-weight: 600;
+  margin-bottom: 40px;
+}
+.job_header > button:disabled {
+  background-color: red;
+  cursor: auto;
+}
+
+.job_header > button:hover {
+  cursor: pointer;
+}
+
+.job_body {
+  background-color: white;
+  margin-left: 400px;
+  width: 700px;
+  margin-top: 20px;
+  padding-left: 50px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+  display: flex;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+.job_body_description > h3 {
+  font-weight: 700;
+  margin-bottom: 5px;
+}
+.job_body_description > h4 {
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: 400;
+  text-align: left;
+  width: 450px;
+}
+.job_body_role > h3 {
+  margin-right: 100px;
+  margin-bottom: 5px;
+}
+.job_body_role > h4 {
+  margin-top: 10px;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.job_bottom {
+  background-color: white;
+  margin-left: 400px;
+  width: 700px;
+  margin-top: 20px;
+  padding-left: 50px;
+  border: 1px solid lightgray;
+  border-radius: 10px;
+}

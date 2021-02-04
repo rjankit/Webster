@@ -1,0 +1,43 @@
+.developerJobs {
+  flex: 0.6;
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  margin: 20px;
+}
+.developerJobs:hover {
+  cursor: pointer;
+}
+.developerJobs_header {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.developerJobs_info {
+  margin-left: 10px;
+}
+
+.developerJobs_info > p {
+  font-size: 15px;
+  color: gray;
+}
+.developerJobs_info > h2 {
+  font-size: 20px;
+}
+
+.developerJobs_info > h2:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.developerJobs_body {
+  overflow-wrap: anywhere;
+}
+.developerJobs_body > p {
+  margin-left: 70px;
+}
+.developerJobs_buttons {
+  display: flex;
+  justify-content: space-evenly;
+}

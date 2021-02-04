@@ -14,6 +14,7 @@
 }
 
 .login > form {
+  padding-top: 40px;
   padding-bottom: 60px;
   display: flex;
   flex-direction: column;
@@ -21,6 +22,8 @@
   -moz-box-shadow: 3px 3px 5px 6px #ccc;
   -webkit-box-shadow: 3px 3px 5px 6px #ccc;
   box-shadow: 3px 3px 5px 6px #ccc;
+  padding-left: 60px;
+  padding-right: 60px;
 }
 
 .login > form > input {
@@ -86,4 +89,26 @@
   margin-left: 20px;
   margin-top: -10px;
   margin-bottom: 0%;
+}
+
+.company {
+  padding-left: 140px;
+  padding-right: 140px;
+
+  border: 1px solid gray;
+  -moz-box-shadow: 3px 3px 5px 6px #ccc;
+  -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+  box-shadow: 3px 3px 5px 6px #ccc;
+}
+
+.company_login {
+}
+.company_login > h2 {
+  color: #0177b7;
+}
+.company_login > h2:hover {
+  cursor: pointer;
+  background-color: whitesmoke;
+  border: 1px solid lightgray;
+  border-radius: 5px;
 }

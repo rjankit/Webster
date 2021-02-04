@@ -9,6 +9,7 @@ const SignUp = () => {
     email: "",
     password: "",
     photoUrl: "",
+    type: "developer",
   });
   const history = useHistory();
   const handleLogin = () => {
@@ -25,7 +26,7 @@ const SignUp = () => {
   return (
     <div className="signup">
       <img
-        src="https://news.hitb.org/sites/default/files/styles/large/public/field/image/500px-LinkedIn_Logo.svg__1.png?itok=q_lR0Vks"
+        src="https://cdn.slidesharecdn.com/ss_thumbnails/letterjj-180710190655-thumbnail-4.jpg?cb=1531249722"
         alt=""
       />
 

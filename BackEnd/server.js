@@ -14,7 +14,7 @@ const firebaseConfig = {
 };
 const firebaseApp = firebase.initializeApp(firebaseConfig);
 const admin = require("firebase-admin");
-
+const database = firebase.database();
 const serviceAccount = require("./service_account.json");
 
 admin.initializeApp({
@@ -35,8 +35,10 @@ app.use(bodyParser.json());
 app.use(cors());
 app.listen(port, () => console.log("Backend server live on " + port));
 
+const check = ["Hi", "Hello", "Thanks"];
+
 app.post("/startLogin", (req, res) => {
-  console.log(req.body);
+  //console.log(req.body);
   axios
     .get("https://login-a1d7e-default-rtdb.firebaseio.com/login.json")
     .then((response) => {
@@ -55,7 +57,8 @@ app.post("/startLogin", (req, res) => {
       if (ab) {
         res.send({ message: "Login Unsuccessfull" });
       }
-    });
+    })
+    .catch(() => {});
 });
 
 app.get("/getPosts", (req, res) => {
@@ -81,7 +84,8 @@ app.post("/sendPosts", (req, res) => {
     )
     .then((response) => {
       //console.log(response);
-    });
+    })
+    .catch(() => {});
   /*db.collection("posts").add({
     name: req.body.name,
     description: "Hello Ankit",
@@ -94,7 +98,8 @@ app.post("/sendPosts", (req, res) => {
 app.post("/loginUser", (req, res) => {
   var email = req.body.email;
   var password = req.body.password;
-  //console.log(email);
+  var type = req.body.type;
+  var found = false;
   var message = "Success";
   var ankit = {};
   firebase
@@ -108,16 +113,31 @@ app.post("/loginUser", (req, res) => {
         .get("https://login-a1d7e-default-rtdb.firebaseio.com/users.json")
         .then((response) => {
           for (var i in response.data) {
-            if (response.data[i].email === email) {
-              ankit = {
-                email: email,
-                name: response.data[i].name,
-                photoUrl: response.data[i].photoUrl,
-              };
-              res.send({ message: message, user: ankit });
+            if (
+              response.data[i].email === email &&
+              response.data[i].type === type
+            ) {
+              if (type === "developer") {
+                ankit = {
+                  email: email,
+                  name: response.data[i].name,
+                  photoUrl: response.data[i].photoUrl,
+                };
+              } else {
+                ankit = {
+                  email: email,
+                  name: response.data[i].name,
+                  photoUrl: response.data[i].photoUrl,
+                  contact: response.data[i].contact,
+                  location: response.data[i].location,
+                };
+              }
+              found = true;
               break;
             }
           }
+          if (found) res.send({ message: message, user: ankit });
+          else res.send({ message: "No such company/developer registered" });
         });
       // ...
     })
@@ -132,18 +152,33 @@ app.post("/loginUser", (req, res) => {
 app.post("/createAccount", (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-  const ankit = {
-    email: email,
-    name: req.body.name,
-    photoUrl: req.body.photoUrl,
-  };
+  const type = req.body.type;
+  var ankit = {};
+
+  if (type === "developer") {
+    ankit = {
+      email: email,
+      name: req.body.name,
+      photoUrl: req.body.photoUrl,
+      type: req.body.type,
+    };
+  } else {
+    ankit = {
+      email: email,
+      name: req.body.name,
+      password: password,
+      photoUrl: req.body.photoUrl,
+      contact: req.body.contact,
+      location: req.body.location,
+      type: req.body.type,
+    };
+  }
+  //console.log(ankit);
   //console.log(email);
   firebase
     .auth()
     .createUserWithEmailAndPassword(email, password)
     .then((userCredential) => {
-      //console.log(email);
-      //console.log(password);
       axios
         .post(
           "https://login-a1d7e-default-rtdb.firebaseio.com/users.json",
@@ -151,7 +186,8 @@ app.post("/createAccount", (req, res) => {
         )
         .then((response) => {
           res.send({ message: "success", user: ankit });
-        });
+        })
+        .catch(() => {});
     })
     .catch((error) => {
       var errorCode = error.code;
@@ -175,4 +211,137 @@ app.post("/resetPassword", (req, res) => {
       var errorMessage = error.message;
       res.send({ message: errorMessage });
     });
+});
+/*const temp = {
+  company: "Cisco",
+  title: " Science",
+  companyEmail: "cisco@gmail.com",
+  location: "Allahabad",
+  postingTime: "22/07/2001",
+  description:
+    "Part time home based job for students , students can earn money while studying and also you can work at your free time. Opportunity to Refer And Earn. Earn Rewards By refering.Responsibilities And Good Worker. earn While You Learn ",
+  role: "Engneer",
+  requirements: "Nothing require, thanks a lot",
+  start_date: "2022",
+  payrange: "23450-204859",
+  status: "Open",
+};
+axios.post("https://login-a1d7e-default-rtdb.firebaseio.com/jobs.json", temp);*/
+
+app.post("/getJobsForCompany", (req, res) => {
+  const email = req.body.user;
+  var jobs = [];
+  axios
+    .get("https://login-a1d7e-default-rtdb.firebaseio.com/jobs.json")
+    .then((response) => {
+      for (var i in response.data) {
+        const a = response.data[i];
+        if (response.data[i].companyEmail === email) {
+          const temp = {
+            id: i,
+            company: a.company,
+            title: a.title,
+            companyEmail: a.companyEmail,
+            location: a.location,
+            postingTime: a.postingTime,
+            description: a.description,
+            role: a.role,
+            requirements: a.requirements,
+            start_date: a.start_date,
+            payrange: a.payrange,
+            status: a.status,
+          };
+          jobs.push(temp);
+        }
+      }
+      res.send({ message: "success", Object: jobs });
+    })
+    .catch(() => {});
+});
+
+app.post("/getJobDetails", (req, res) => {
+  //console.log(req.body);
+  axios
+    .get(
+      "https://login-a1d7e-default-rtdb.firebaseio.com/jobs/" +
+        req.body.id +
+        ".json"
+    )
+    .then((response) => {
+      const a = response.data;
+      const ankit = {
+        id: req.body.id,
+        company: a.company,
+        title: a.title,
+        companyEmail: a.companyEmail,
+        location: a.location,
+        postingTime: a.postingTime,
+        description: a.description,
+        role: a.role,
+        requirements: a.requirements,
+        start_date: a.start_date,
+        payrange: a.payrange,
+        status: a.status,
+      };
+      res.send({ message: "success", Object: ankit });
+    });
+});
+
+app.post("/closeOpening", (req, res) => {
+  //console.log(req.body.id);
+  database.ref("jobs/" + req.body.id + "/status").set("closed");
+  res.send({ message: "success" });
+});
+
+app.post("/postNewJob", (req, res) => {
+  database.ref("jobs").push().set(req.body);
+  res.send({ message: "success" });
+});
+
+app.get("/getDeveloperJobs", (req, res) => {
+  var jobs = [];
+  database.ref("jobs").on("value", (snapshot) => {
+    snapshot.forEach((childSnapshot) => {
+      const a = childSnapshot.val();
+      const ankit = {
+        id: childSnapshot.key,
+        photoUrl: a.photoUrl,
+        title: a.title,
+        company: a.company,
+        location: a.location,
+        status: a.status,
+      };
+      jobs.push(ankit);
+    });
+  });
+  res.send({ message: "success", Object: jobs });
+});
+
+app.post("/applyJob", (req, res) => {
+  axios
+    .post(
+      "https://login-a1d7e-default-rtdb.firebaseio.com/applicants/" +
+        req.body.id +
+        ".json",
+      req.body
+    )
+    .then((response) => {
+      res.send({ message: "success" });
+    });
+});
+
+app.post("/getApplicants", (req, res) => {
+  var applicants = [];
+  database.ref("applicants/" + req.body.id).on("value", (snapshot) => {
+    snapshot.forEach((child) => {
+      const a = child.val();
+      applicants.push({
+        name: a.name,
+        email: a.email,
+        resumeId: a.resumeId,
+        githubId: a.githubId,
+      });
+    });
+  });
+  res.send({ message: "success", Object: applicants });
 });
