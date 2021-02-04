@@ -264,7 +264,7 @@ app.post("/postNewJob", (req, res) => {
 app.get("/getDeveloperJobs", (req, res) => {
   var jobs = [];
   database.ref("jobs").on("value", (snapshot) => {
-    console.log(snapshot.val());
+    //console.log(snapshot.val());
     snapshot.forEach((childSnapshot) => {
       const a = childSnapshot.val();
       const ankit = {
@@ -277,7 +277,7 @@ app.get("/getDeveloperJobs", (req, res) => {
       };
       jobs.push(ankit);
     });
-    console.log(jobs);
+    //console.log(jobs);
     res.send({ message: "success", Object: jobs });
   });
 });
