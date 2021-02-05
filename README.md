@@ -15,7 +15,7 @@
 
 ## Tech Stack - 
 # Front End
-- React 
+- React JS
 - React Redux
 - React Router
 - Material UI
